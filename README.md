@@ -9,7 +9,7 @@
 docker pull giterhub/ariang:latest
 
 # run
-docker -run -d \
+docker run -d \
     --name ariang \
     --restart unless-stopped \
     -p 80:80 \
