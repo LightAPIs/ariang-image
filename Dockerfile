@@ -7,7 +7,7 @@ RUN apk add wget unzip && \
     rm -rf /tmp/AriaNg-${ARIANG_VER}-AllInOne.zip && \
     apk del wget unzip
 
-FROM p3terx/darkhttpd:latest
+FROM giterhub/darkhttpd:latest
 
 LABEL maintainer="Light"
 

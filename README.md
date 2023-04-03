@@ -23,4 +23,4 @@ docker run -d \
 ## Credits
 
 - [mayswind/AriaNg](https://github.com/mayswind/AriaNg)
-- [p3terx/darkhttpd](https://hub.docker.com/r/p3terx/darkhttpd)
+- [LightAPIs/darkhttpd-image](https://github.com/LightAPIs/darkhttpd-image)
