@@ -1,9 +1,7 @@
 name: docker-build
 
 on:
-  push:
-    tags:
-      - "*.*.*"
+  workflow_dispatch:
 
 env:
   DOCKERHUB_REPO: giterhub/ariang
@@ -14,6 +12,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Get latest release tag
+        uses: dragonish/get-latest-release-tag@v1
+        id: latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: 'dragonish/get-latest-release-tag'
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -23,8 +27,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Generate App Version
-        run: echo APP_VERSION=`git describe --tags --always` >> $GITHUB_ENV
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
@@ -32,7 +34,7 @@ jobs:
           context: .
           tags: |
             ${{ env.DOCKERHUB_REPO }}:latest
-            ${{ env.DOCKERHUB_REPO }}:${{ env.APP_VERSION }}
+            ${{ env.DOCKERHUB_REPO }}:${{ steps.latest.outputs.tag }}
           platforms: |
             linux/amd64
             linux/386
