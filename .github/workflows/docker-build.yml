@@ -17,7 +17,7 @@ jobs:
         id: latest
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          repository: 'dragonish/get-latest-release-tag'
+          repository: 'mayswind/AriaNg'
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
